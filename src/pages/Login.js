@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setEmail, setCurrencies } from '../actions';
-import { currenciesApi } from '../services/apiData';
+import propTypes from 'prop-types';
+import { setEmail } from '../actions';
 
 class Login extends React.Component {
   constructor(props) {
@@ -75,6 +75,14 @@ class Login extends React.Component {
       </main>);
   }
 }
+
+Login.propTypes = {
+  sendMail: propTypes.func.isRequired,
+  history: propTypes.shape({
+    push: propTypes.func.isRequired,
+  }).isRequired,
+};
+
 const mapDispatchToProps = (dispatch) => ({
   sendMail: (data) => dispatch(setEmail(data)),
 });

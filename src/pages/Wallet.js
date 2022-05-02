@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 import Header from '../components/Header';
 import { currenciesApi } from '../services/apiData';
 import { setCurrencies } from '../actions';
@@ -23,6 +24,9 @@ class Wallet extends React.Component {
     );
   }
 }
+Wallet.propTypes = {
+  sendCurrencies: propTypes.func.isRequired,
+};
 const mapDispatchToProps = (dispatch) => ({
   sendCurrencies: (data) => dispatch(setCurrencies(data)),
 });
