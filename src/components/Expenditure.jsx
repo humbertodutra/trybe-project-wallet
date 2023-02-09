@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropType from 'prop-types';
 import { allFetched } from '../services/apiData';
 import { setExpenses } from '../actions/index';
+import './expenditure.css';
 
 class Expenditure extends React.Component {
   constructor(props) {
@@ -11,33 +12,49 @@ class Expenditure extends React.Component {
     this.state = {
       value: 0,
       description: '',
-      currency: '',
-      paymentMethod: '',
-      category: '',
+      currency: 'USD',
+      paymentMethod: 'Cartão de crédito',
+      category: 'Alimentação',
       currencies: [],
     };
   }
 
-  handleChange= ({ target }) => {
+  handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({
       [name]: value,
     });
-  }
+  };
 
-  submitExpenses= async () => {
+  submitExpenses = async () => {
     const { addExepenses } = this.props;
     const currenciesAll = await allFetched();
     this.setState({
       currencies: currenciesAll,
     });
-    const { value,
-      description, currency, paymentMethod, category, currencies } = this.state;
+    const {
+      value,
+      description,
+      currency,
+      paymentMethod,
+      category,
+      currencies,
+    } = this.state;
 
-    const total = value;
+    const total = () => {
+      if (value === 0) {
+        const totalFormated = 0;
+        return totalFormated;
+      } if (value.includes(',')) {
+        const totalFormated = parseFloat(value.replace(',', '.'));
+        return totalFormated;
+      }
+      const totalFormated = parseFloat(value);
+      return totalFormated;
+    };
 
     const expenditureToBeAdded = {
-      value: total,
+      value: total(),
       description,
       currency,
       method: paymentMethod,
@@ -45,20 +62,15 @@ class Expenditure extends React.Component {
       exchangeRates: currencies,
     };
     addExepenses(expenditureToBeAdded);
-
-    this.setState({
-      value: 0,
-
-    });
-  }
+  };
 
   render() {
     const { currencies } = this.props;
     const { value } = this.state;
     return (
-      <main>
-        <form>
-          <label htmlFor="value">
+      <main className="expenditure-main">
+        <form className="expenditure-form">
+          <label htmlFor="value" className="label-expenditure">
             Valor de despesa:
             <input
               data-testid="value-input"
@@ -66,22 +78,25 @@ class Expenditure extends React.Component {
               id="value"
               onChange={ this.handleChange }
               value={ value }
+              className="input-expenditure-value"
             />
           </label>
 
-          <label htmlFor="value">
+          <label htmlFor="value" className="label-expenditure">
             Descrição
             <input
               data-testid="description-input"
               type="text"
               name="description"
               onChange={ this.handleChange }
+              className="input-expenditure-description"
             />
           </label>
 
-          <label htmlFor="Moeda">
+          <label htmlFor="Moeda" className="label-expenditure">
             Moeda:
             <select
+              className="select-expenditure"
               name="currency"
               data-testid="currency-input"
               id="Moeda"
@@ -90,17 +105,19 @@ class Expenditure extends React.Component {
               {currencies.map((curr) => (
                 <option key={ curr } value={ curr }>
                   {curr}
-                </option>))}
+                </option>
+              ))}
             </select>
           </label>
 
-          <label htmlFor="method-input">
+          <label htmlFor="method-input" className="label-expenditure">
             Metodo de pagamento
             <select
               data-testid="method-input"
               onChange={ this.handleChange }
               name="paymentMethod"
               id="method-input"
+              className="select-expenditure"
             >
               <option>Cartão de crédito</option>
               <option>Dinheiro</option>
@@ -108,13 +125,14 @@ class Expenditure extends React.Component {
             </select>
           </label>
 
-          <label htmlFor="category">
+          <label htmlFor="category" className="label-expenditure">
             Categoria de despesa:
             <select
               name="category"
               data-testid="tag-input"
               onChange={ this.handleChange }
               id="category"
+              className="select-expenditure"
             >
               <option>Alimentação</option>
               <option>Lazer</option>
@@ -127,13 +145,12 @@ class Expenditure extends React.Component {
           <button
             onClick={ this.submitExpenses }
             type="button"
+            className="button-expenditure"
           >
             Adicionar despesa
           </button>
-
         </form>
       </main>
-
     );
   }
 }

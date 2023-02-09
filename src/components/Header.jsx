@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import './Header.css'
 
 class Header extends React.Component {
   render() {
@@ -8,12 +9,12 @@ class Header extends React.Component {
     const total = wallet.reduce((acc, { value, currency, exchangeRates }) => acc
       + (parseInt(value, 10) * exchangeRates[currency].ask), 0);
     return (
-      <header>
-        <div data-testid="email-field">{email}</div>
-        <p data-testid="total-field">
-          {total ? total.toFixed(2) : 0}
+      <header className="Header">
+        <div className="email-field" data-testid="email-field">{`${email}`}</div>
+        <p data-testid="total-field" className="total-field">
+          { `Total de desepesas:  R$ ${total ? total.toFixed(2) : 0}`}
         </p>
-        <p data-testid="header-currency-field">BRL</p>
+        <p className="currency" data-testid="header-currency-field">Moeda: BRL</p>
       </header>
 
     );

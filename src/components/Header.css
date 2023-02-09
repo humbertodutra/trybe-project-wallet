@@ -1,0 +1,40 @@
+.Header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: green;
+    color: white;
+    padding: 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 80%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 110px;
+    border-radius: 50px;
+    margin: 0 auto;
+}
+  
+.email-field {
+    font-size: 18px;
+    font-weight: bold;
+    width: 20%;
+    margin-left: 20px;
+    
+
+}
+  
+.total-field {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+  
+.currency {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 20px;
+    width: 20%;
+}

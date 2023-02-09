@@ -6,6 +6,7 @@ import { currenciesApi } from '../services/apiData';
 import { setCurrencies } from '../actions';
 import Expenditure from '../components/Expenditure';
 import Table from '../components/Table';
+import './login.css';
 
 class Wallet extends React.Component {
   async componentDidMount() {
@@ -16,7 +17,7 @@ class Wallet extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="wallet-div">
         <Header />
         <Expenditure />
         <Table />
