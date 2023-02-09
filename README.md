@@ -29,7 +29,7 @@ npm start
 You must enter a valid email like 'test@exemple.com' and any password with 6 or more charecters
 
 * Wallet <br>
-The left side you will see a form to enter your expenses. Here you enter your expense:
+Below the header you will see a form to enter your expenses. Here you enter your expense:
 
 > - Valor: Value
 > - Moeda: Currency
@@ -39,11 +39,11 @@ The left side you will see a form to enter your expenses. Here you enter your ex
 <b>Click on 'Adicionar Despesa' button to save</b>
 <br>
 
-* The espense shows the information you entered plus <b>Câmbio Utilizado, Valor Convertido and Moeda de conversão</b> <br> 
+* The table shows the information you entered plus <b>Câmbio Utilizado, Valor Convertido and Moeda de conversão</b> <br> 
 meaning <b>'Used Currency','Converted Value' and 'Convertion Currency'</b> respectively. The Convertion Currency will always be Brazilian Real
 
 * You can delete an expense by clicking on the red square icon with an X
-* You can see the total of all the expenses at the top right side of the screen in red.
+* You can see the total of all the expenses at the Header on the top of the page.
   
 <br>
   <b>Feedbacks are welcome :rocket:</b>
