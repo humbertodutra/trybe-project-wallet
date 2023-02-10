@@ -12,7 +12,7 @@ class Header extends React.Component {
       <header className="Header">
         <div className="email-field" data-testid="email-field">{`${email}`}</div>
         <p data-testid="total-field" className="total-field">
-          { `Total de desepesas:  R$ ${total ? total.toFixed(2) : 0}`}
+          { `Total de desepesas:  R$ ${total ? total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') : 0}`}
         </p>
         <p className="currency" data-testid="header-currency-field">Moeda: BRL</p>
       </header>
